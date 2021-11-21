@@ -8,9 +8,9 @@ function App() {
   const dispatch = useDispatch();
   const heroes = useSelector((state) => state.heroes);
 
-  useEffect(async () => {
-    await dispatch(getHeroes());
-  }, []);
+  // useEffect(async () => {
+  //   await dispatch(getHeroes(9));
+  // }, []);
 
   return (
     <div className="App">

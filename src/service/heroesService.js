@@ -1,8 +1,8 @@
 import http from "../http-common";
 
 class HeroesService {
-  getHeroes() {
-    return http.get("/people");
+  getHeroes(pageNumber = 1) {
+    return http.get(`/people?page=${pageNumber}`);
   }
 }
 

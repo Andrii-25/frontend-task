@@ -8,7 +8,7 @@ import "antd/dist/antd.css";
 export default function MainPage() {
   const styles = {
     width: "91%",
-    height: "100%",
+    minHeight: "100vh",
     marginLeft: "9%",
     padding: "50px",
   };

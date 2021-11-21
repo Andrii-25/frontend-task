@@ -1,43 +1,112 @@
 import { Table } from "antd";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getHeroes } from "../actions/heroes";
+import Pagination from "./Pagination";
 
 const columns = [
   {
     title: "Name",
     dataIndex: "name",
+    key: "name",
     sorter: (a, b) => a.name.length - b.name.length,
   },
   {
     title: "Birth Year",
     dataIndex: "birth_year",
+    key: "birth_year",
     sorter: (a, b) => a.birth_year.length - b.birth_year.length,
   },
   {
     title: "Height",
     dataIndex: "height",
+    key: "height",
     sorter: (a, b) => a.height - b.height,
   },
   {
     title: "Mass",
     dataIndex: "mass",
+    key: "mass",
     sorter: (a, b) => a.mass - b.mass,
   },
 ];
 
-function onChange(pagination, filters, sorter, extra) {
-  console.log("params", pagination, filters, sorter, extra);
-}
-
 export default function TableHeroes() {
   const heroes = useSelector((state) => state.heroes);
+  const dispatch = useDispatch();
+  let [pageNumber, setPageNumber] = useState(1);
+  const [isLoading, setLoading] = useState(false);
+  const [isFirst, setFirst] = useState(false);
+  const [isLast, setLast] = useState(false);
+
+  useEffect(async () => {
+    try {
+      setLoading(true);
+      if (pageNumber === 1) {
+        setFirst(true);
+      }
+      await dispatch(getHeroes(pageNumber));
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  async function onNextPage() {
+    try {
+      setLoading(true);
+      console.log(pageNumber);
+      setPageNumber(++pageNumber);
+      console.log(pageNumber);
+      await dispatch(getHeroes(pageNumber));
+      if (!heroes.next) {
+        setLast(true);
+      }
+      if (isFirst) {
+        setFirst(false);
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function onPreviousPage() {
+    try {
+      setLoading(true);
+      setPageNumber(--pageNumber);
+      await dispatch(getHeroes(pageNumber));
+      if (pageNumber === 1) {
+        setFirst(true);
+      }
+      if (isLast) {
+        setLast(false);
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
-    <Table
-      columns={columns}
-      dataSource={heroes.results}
-      onChange={onChange}
-      loading={false}
-      size="small"
-      pagination={{ position: ["bottomRight"] }}
-    />
+    <>
+      <Table
+        columns={columns}
+        dataSource={heroes.results}
+        loading={isLoading}
+        size="small"
+        pagination={false}
+      />
+      <Pagination
+        onNext={onNextPage}
+        onPrevious={onPreviousPage}
+        currentPage={pageNumber}
+        isLast={isLast}
+        isFirst={isFirst}
+      />
+    </>
   );
 }

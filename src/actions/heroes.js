@@ -1,9 +1,9 @@
 import { GET_HEROES } from "../actions/types";
 import HeroesService from "../service/heroesService";
 
-export const getHeroes = () => async (dispatch) => {
+export const getHeroes = (pageNumber) => async (dispatch) => {
   try {
-    const res = await HeroesService.getHeroes();
+    const res = await HeroesService.getHeroes(pageNumber);
 
     dispatch({
       type: GET_HEROES,
