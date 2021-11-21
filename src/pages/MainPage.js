@@ -20,7 +20,7 @@ export default function MainPage() {
     <Layout>
       <Header onClick={() => setCollapsed(!collapsed)} />
       <Layout>
-        <Sider collapsed={collapsed} />
+        <Sider collapsed={collapsed} selectedKeys={["1"]} openKeys={["sub1"]} />
         <Content
           className="site-layout-background"
           style={contentStyles}

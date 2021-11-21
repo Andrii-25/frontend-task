@@ -33,7 +33,7 @@ export default function TablePage() {
     <Layout>
       <Header onClick={() => setCollapsed(!collapsed)} />
       <Layout>
-        <Sider collapsed={collapsed} />
+        <Sider collapsed={collapsed} selectedKeys={["2"]} openKeys={["sub2"]} />
         <Content className="site-layout-background" style={contentStyles}>
           <Table data={heroesData} />
         </Content>
