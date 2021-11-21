@@ -10,7 +10,7 @@ export default function Header({ onClick }) {
       onBack={() => null}
       title={
         <Row>
-          <Tooltip title="Open menu">
+          <Tooltip title="Menu">
             <Button
               onClick={onClick}
               style={{ marginRight: "25px" }}

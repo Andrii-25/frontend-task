@@ -13,6 +13,11 @@ export default function Pagination({
     margin: "3px",
   };
 
+  const stylesCurrPage = {
+    margin: "3px",
+    pointerEvents: "none",
+  };
+
   const stylesRow = {
     marginTop: "15px",
     marginBottom: "15px",
@@ -31,7 +36,7 @@ export default function Pagination({
           />
         </Tooltip>
         <Tooltip title="Page">
-          <Button style={stylesBtn} shape="round" size="large">
+          <Button style={stylesCurrPage} shape="round" size="large">
             {currentPage}
           </Button>
         </Tooltip>

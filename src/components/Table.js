@@ -1,6 +1,6 @@
 import { Table } from "antd";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getHeroes } from "../actions/heroes";
 import Pagination from "./Pagination";
 
@@ -31,8 +31,7 @@ const columns = [
   },
 ];
 
-export default function TableHeroes() {
-  const heroes = useSelector((state) => state.heroes);
+export default function TableHeroes({ data }) {
   const dispatch = useDispatch();
   let [pageNumber, setPageNumber] = useState(1);
   const [isLoading, setLoading] = useState(false);
@@ -42,10 +41,13 @@ export default function TableHeroes() {
   useEffect(async () => {
     try {
       setLoading(true);
+      if (data.length === 0) {
+        setFirst(true);
+        setLast(true);
+      }
       if (pageNumber === 1) {
         setFirst(true);
       }
-      await dispatch(getHeroes(pageNumber));
     } catch (e) {
       console.error(e);
     } finally {
@@ -56,11 +58,9 @@ export default function TableHeroes() {
   async function onNextPage() {
     try {
       setLoading(true);
-      console.log(pageNumber);
       setPageNumber(++pageNumber);
-      console.log(pageNumber);
       await dispatch(getHeroes(pageNumber));
-      if (!heroes.next) {
+      if (!data.next) {
         setLast(true);
       }
       if (isFirst) {
@@ -95,7 +95,7 @@ export default function TableHeroes() {
     <>
       <Table
         columns={columns}
-        dataSource={heroes.results}
+        dataSource={data.results}
         loading={isLoading}
         size="small"
         pagination={false}

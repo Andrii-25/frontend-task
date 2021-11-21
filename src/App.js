@@ -2,19 +2,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getHeroes } from "./actions/heroes";
 import "./App.css";
-import MainPage from "./pages/MainPage";
+import TablePage from "./pages/TablePage";
 
 function App() {
-  const dispatch = useDispatch();
-  const heroes = useSelector((state) => state.heroes);
-
-  // useEffect(async () => {
-  //   await dispatch(getHeroes(9));
-  // }, []);
-
   return (
     <div className="App">
-      <MainPage />
+      <TablePage />
     </div>
   );
 }
