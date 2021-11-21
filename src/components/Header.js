@@ -17,7 +17,7 @@ export default function Header({ onClick }) {
               icon={<MenuOutlined />}
             />
           </Tooltip>
-          <div style={{ color: "#ffe300" }}>Star Wars Heroes</div>
+          <div style={{ color: "#ffe300" }}>Star Wars</div>
         </Row>
       }
       backIcon={false}

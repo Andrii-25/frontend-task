@@ -2,11 +2,11 @@ import { Layout } from "antd";
 import { Content } from "antd/lib/layout/layout";
 import { useState, useEffect } from "react";
 import { getHeroes } from "../actions/heroes";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/Header";
 import Sider from "../components/Sider";
 import Table from "../components/Table";
 import "antd/dist/antd.css";
-import { useDispatch, useSelector } from "react-redux";
 
 export default function TablePage() {
   const contentStyles = {

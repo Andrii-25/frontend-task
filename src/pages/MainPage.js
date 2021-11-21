@@ -1,10 +1,10 @@
-import { Layout, Image, Typography } from "antd";
+import { Layout } from "antd";
 import { Content } from "antd/lib/layout/layout";
 import { useState } from "react";
 import Header from "../components/Header";
 import Sider from "../components/Sider";
-import "antd/dist/antd.css";
 import Greeting from "../components/Greeting";
+import "antd/dist/antd.css";
 
 export default function MainPage() {
   const contentStyles = {

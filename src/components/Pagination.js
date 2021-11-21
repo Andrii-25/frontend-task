@@ -1,6 +1,5 @@
 import { Row, Col, Button, Tooltip } from "antd";
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
-import "antd/dist/antd.css";
 
 export default function Pagination({
   onNext,

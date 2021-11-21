@@ -1,7 +1,11 @@
 import { Menu } from "antd";
-import { HomeOutlined, TableOutlined } from "@ant-design/icons";
+import {
+  HomeOutlined,
+  TableOutlined,
+  GithubFilled,
+  LinkedinFilled,
+} from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import "antd/dist/antd.css";
 
 export default function Sider({ collapsed, selectedKeys, openKeys }) {
   const styles = {
@@ -25,6 +29,16 @@ export default function Sider({ collapsed, selectedKeys, openKeys }) {
       </Menu.Item>
       <Menu.Item key="2" icon={<TableOutlined />}>
         <Link to="/table">Table</Link>
+      </Menu.Item>
+      <Menu.Item key="3" icon={<GithubFilled />}>
+        <a href="https://github.com/Andrii-25/frontend-task" target="_blank">
+          Github
+        </a>
+      </Menu.Item>
+      <Menu.Item key="4" icon={<LinkedinFilled />}>
+        <a href="https://www.linkedin.com/in/andrii-kotsupyr/" target="_blank">
+          LinkedIn
+        </a>
       </Menu.Item>
     </Menu>
   );
