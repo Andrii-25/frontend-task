@@ -38,7 +38,7 @@ export default function TableHeroes({ data }) {
   const [isFirst, setFirst] = useState(false);
   const [isLast, setLast] = useState(false);
 
-  useEffect(async () => {
+  useEffect(() => {
     try {
       setLoading(true);
       if (data.length === 0) {

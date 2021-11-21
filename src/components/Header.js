@@ -7,7 +7,6 @@ export default function Header({ onClick }) {
     <PageHeader
       className="site-page-header"
       style={{ backgroundColor: "#1c1e22" }}
-      onBack={() => null}
       title={
         <Row>
           <Tooltip title="Menu">

@@ -1,10 +1,10 @@
-import { Layout } from "antd";
+import { Layout, Image, Typography } from "antd";
 import { Content } from "antd/lib/layout/layout";
 import { useState } from "react";
 import Header from "../components/Header";
 import Sider from "../components/Sider";
-import Table from "../components/Table";
 import "antd/dist/antd.css";
+import Greeting from "../components/Greeting";
 
 export default function MainPage() {
   const contentStyles = {
@@ -21,10 +21,9 @@ export default function MainPage() {
       <Header onClick={() => setCollapsed(!collapsed)} />
       <Layout>
         <Sider collapsed={collapsed} selectedKeys={["1"]} openKeys={["sub1"]} />
-        <Content
-          className="site-layout-background"
-          style={contentStyles}
-        ></Content>
+        <Content className="site-layout-background" style={contentStyles}>
+          <Greeting />
+        </Content>
       </Layout>
     </Layout>
   );
