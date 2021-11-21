@@ -1,13 +1,26 @@
-import { PageHeader } from "antd";
+import { PageHeader, Button, Tooltip, Row } from "antd";
+import { MenuOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
 
-export default function Header() {
+export default function Header({ onClick }) {
   return (
     <PageHeader
       className="site-page-header"
-      style={{ backgroundColor: "#272b30" }}
+      style={{ backgroundColor: "#1c1e22" }}
       onBack={() => null}
-      title={<div style={{ color: "#ffe300" }}>Star Wars Heroes</div>}
+      title={
+        <Row>
+          <Tooltip title="Open menu">
+            <Button
+              onClick={onClick}
+              style={{ marginRight: "25px" }}
+              type="primary"
+              icon={<MenuOutlined />}
+            />
+          </Tooltip>
+          <div style={{ color: "#ffe300" }}>Star Wars Heroes</div>
+        </Row>
+      }
       backIcon={false}
     />
   );

@@ -7,7 +7,7 @@ export default function Sider({ collapsed }) {
     height: "100%",
     position: "fixed",
     maxWidth: "9%",
-    backgroundColor: "#1c1e22",
+    backgroundColor: "#3b4045",
   };
 
   return (
