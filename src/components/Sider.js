@@ -3,6 +3,13 @@ import { HomeOutlined, TableOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
 
 export default function Sider({ collapsed }) {
+  const styles = {
+    height: "100%",
+    position: "fixed",
+    maxWidth: "9%",
+    backgroundColor: "#1c1e22",
+  };
+
   return (
     <Menu
       defaultSelectedKeys={["1"]}
@@ -10,12 +17,7 @@ export default function Sider({ collapsed }) {
       mode="inline"
       theme="dark"
       inlineCollapsed={collapsed}
-      style={{
-        height: "100vh",
-        position: "fixed",
-        maxWidth: "200px",
-        backgroundColor: "#1c1e22",
-      }}
+      style={styles}
     >
       <Menu.Item key="1" icon={<HomeOutlined />}>
         Home
