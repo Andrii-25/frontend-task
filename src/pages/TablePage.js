@@ -1,4 +1,4 @@
-import { Layout } from "antd";
+import { Layout, message } from "antd";
 import { Content } from "antd/lib/layout/layout";
 import { useState, useEffect } from "react";
 import { getHeroes } from "../actions/heroes";
@@ -23,6 +23,9 @@ export default function TablePage() {
   useEffect(async () => {
     try {
       await dispatch(getHeroes(1));
+      if (heroesData.error) {
+        message.error(heroesData.error);
+      }
     } catch (e) {
       console.error(e);
     }

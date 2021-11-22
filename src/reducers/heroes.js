@@ -1,4 +1,4 @@
-import { GET_HEROES } from "../actions/types";
+import { GET_HEROES, GET_HEROES_ERROR } from "../actions/types";
 
 const initialState = [];
 
@@ -7,6 +7,8 @@ function heroesReducer(state = initialState, action) {
 
   switch (type) {
     case GET_HEROES:
+      return payload;
+    case GET_HEROES_ERROR:
       return payload;
     default:
       return state;
