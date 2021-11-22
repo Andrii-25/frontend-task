@@ -1,26 +1,24 @@
 import { Typography, Image, Row } from "antd";
-import { useEffect, useState } from "react";
 import img from "../star-wars.jpg";
 
 export default function Greeting() {
-  const [hour, setHour] = useState(null);
-
-  function getHour() {
-    const date = new Date();
-    const currentHour = date.getHours();
-    setHour(currentHour);
+  function getGreeting() {
+    const hour = new Date().getHours();
+    if (hour < 12) {
+      return "Good morning!";
+    } else if (hour < 18) {
+      return "Good afternoon!";
+    } else {
+      return "Good evening!";
+    }
   }
-
-  useEffect(() => {
-    getHour();
-  }, []);
 
   const apiLink = <a href="https://swapi.dev/">public API</a>;
 
   return (
     <>
       <Typography.Title>
-        {hour < 12 ? "Good Morning! " : "Good evening! "}
+        {`${getGreeting()} `}
         Welcome to React app that gets data of Star Wars heroes and displays
         them in a table using {apiLink}.
       </Typography.Title>
