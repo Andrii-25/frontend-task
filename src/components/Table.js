@@ -9,13 +9,13 @@ const columns = [
     title: "Name",
     dataIndex: "name",
     key: "name",
-    sorter: (a, b) => a.name.length - b.name.length,
+    sorter: (a, b) => a.name.localeCompare(b.name),
   },
   {
     title: "Birth Year",
     dataIndex: "birth_year",
     key: "birth_year",
-    sorter: (a, b) => a.birth_year.length - b.birth_year.length,
+    sorter: (a, b) => a.birth_year.localeCompare(b.birth_year),
   },
   {
     title: "Height",
