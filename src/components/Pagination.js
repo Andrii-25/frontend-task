@@ -1,5 +1,6 @@
 import { Row, Col, Button, Tooltip } from "antd";
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
+import styled from "styled-components";
 
 export default function Pagination({
   onNext,
@@ -8,25 +9,25 @@ export default function Pagination({
   isLast,
   isFirst,
 }) {
-  const stylesBtn = {
-    margin: "3px",
-  };
+  const SwitchButton = styled(Button)`
+    margin: 3px;
+  `;
 
-  const stylesCurrPage = {
-    margin: "3px",
-    pointerEvents: "none",
-  };
+  const PageIndicator = styled(Button)`
+    margin: 3px;
+    pointer-events: none;
+  `;
 
-  const stylesRow = {
-    marginTop: "15px",
-    marginBottom: "15px",
-  };
+  const Wrapper = styled(Row)`
+    margin-top: 15px;
+    margin-bottom: 15px;
+  `;
+
   return (
-    <Row style={stylesRow}>
+    <Wrapper>
       <Col span={24}>
         <Tooltip title="Previous">
-          <Button
-            style={stylesBtn}
+          <SwitchButton
             shape="circle"
             icon={<ArrowLeftOutlined />}
             size="large"
@@ -35,13 +36,12 @@ export default function Pagination({
           />
         </Tooltip>
         <Tooltip title="Page">
-          <Button style={stylesCurrPage} shape="round" size="large">
+          <PageIndicator shape="round" size="large">
             {currentPage}
-          </Button>
+          </PageIndicator>
         </Tooltip>
         <Tooltip title="Next">
-          <Button
-            style={stylesBtn}
+          <SwitchButton
             shape="circle"
             icon={<ArrowRightOutlined />}
             size="large"
@@ -50,6 +50,6 @@ export default function Pagination({
           />
         </Tooltip>
       </Col>
-    </Row>
+    </Wrapper>
   );
 }

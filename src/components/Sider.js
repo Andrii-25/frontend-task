@@ -6,23 +6,23 @@ import {
   LinkedinFilled,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 export default function Sider({ collapsed, selectedKeys, openKeys }) {
-  const styles = {
-    height: "100%",
-    position: "fixed",
-    maxWidth: "9%",
-    backgroundColor: "#3b4045",
-  };
+  const MenuStyled = styled(Menu)`
+    height: 100%;
+    position: fixed;
+    max-width: 9%;
+  `;
 
   return (
-    <Menu
+    <MenuStyled
       defaultSelectedKeys={selectedKeys}
       defaultOpenKeys={openKeys}
       mode="inline"
       theme="dark"
       inlineCollapsed={collapsed}
-      style={styles}
+      style={{ backgroundColor: "#3b4045" }}
     >
       <Menu.Item key="1" icon={<HomeOutlined />}>
         <Link to="/">Home</Link>
@@ -40,6 +40,6 @@ export default function Sider({ collapsed, selectedKeys, openKeys }) {
           LinkedIn
         </a>
       </Menu.Item>
-    </Menu>
+    </MenuStyled>
   );
 }
