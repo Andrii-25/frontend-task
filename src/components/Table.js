@@ -41,8 +41,11 @@ export default function TableHeroes({ data }) {
   useEffect(() => {
     try {
       setLoading(true);
-      if (data.length === 0) {
+      if (data.results.length === 0) {
         setFirst(true);
+        setLast(true);
+      }
+      if (data.next === null) {
         setLast(true);
       }
       if (pageNumber === 1) {
@@ -53,16 +56,13 @@ export default function TableHeroes({ data }) {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [pageNumber, data.next]);
 
   async function onNextPage() {
     try {
       setLoading(true);
       setPageNumber(++pageNumber);
       await dispatch(getHeroes(pageNumber));
-      if (!data.next) {
-        setLast(true);
-      }
       if (isFirst) {
         setFirst(false);
       }
@@ -78,9 +78,6 @@ export default function TableHeroes({ data }) {
       setLoading(true);
       setPageNumber(--pageNumber);
       await dispatch(getHeroes(pageNumber));
-      if (pageNumber === 1) {
-        setFirst(true);
-      }
       if (isLast) {
         setLast(false);
       }
