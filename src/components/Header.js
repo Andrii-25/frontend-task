@@ -1,6 +1,5 @@
 import { PageHeader, Button, Tooltip, Row } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
-import "antd/dist/antd.css";
 
 export default function Header({ onClick }) {
   return (

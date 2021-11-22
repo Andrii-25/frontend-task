@@ -1,4 +1,4 @@
-import { Typography, Image, Row, Col } from "antd";
+import { Typography, Image, Row } from "antd";
 import { useEffect, useState } from "react";
 import img from "../star-wars.jpg";
 

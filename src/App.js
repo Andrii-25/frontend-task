@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import TablePage from "./pages/TablePage";
 import MainPage from "./pages/MainPage";
+import "antd/dist/antd.css";
 import "./App.css";
 
 function App() {
