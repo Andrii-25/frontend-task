@@ -35,22 +35,13 @@ export default function TableHeroes({ data }) {
   const dispatch = useDispatch();
   let [pageNumber, setPageNumber] = useState(1);
   const [isLoading, setLoading] = useState(false);
-  const [isFirst, setFirst] = useState(false);
-  const [isLast, setLast] = useState(false);
+
+  const isFirstPage = pageNumber === 1;
+  const isLastPage = data.next === null || data.length === 0;
 
   useEffect(() => {
     try {
       setLoading(true);
-      if (data.results.length === 0) {
-        setFirst(true);
-        setLast(true);
-      }
-      if (data.next === null) {
-        setLast(true);
-      }
-      if (pageNumber === 1) {
-        setFirst(true);
-      }
     } catch (e) {
       console.error(e);
     } finally {
@@ -63,9 +54,6 @@ export default function TableHeroes({ data }) {
       setLoading(true);
       setPageNumber(++pageNumber);
       await dispatch(getHeroes(pageNumber));
-      if (isFirst) {
-        setFirst(false);
-      }
     } catch (e) {
       console.error(e);
     } finally {
@@ -78,9 +66,6 @@ export default function TableHeroes({ data }) {
       setLoading(true);
       setPageNumber(--pageNumber);
       await dispatch(getHeroes(pageNumber));
-      if (isLast) {
-        setLast(false);
-      }
     } catch (e) {
       console.error(e);
     } finally {
@@ -101,8 +86,8 @@ export default function TableHeroes({ data }) {
         onNext={onNextPage}
         onPrevious={onPreviousPage}
         currentPage={pageNumber}
-        isLast={isLast}
-        isFirst={isFirst}
+        isLast={isLastPage}
+        isFirst={isFirstPage}
       />
     </>
   );
