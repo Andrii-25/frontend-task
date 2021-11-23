@@ -15,21 +15,34 @@ export default function TablePage() {
     padding: "50px",
   };
 
-  const [collapsed, setCollapsed] = useState(true);
-
   const dispatch = useDispatch();
   const heroesData = useSelector((state) => state.heroes);
 
+  const [collapsed, setCollapsed] = useState(true);
+  let [pageNumber, setPageNumber] = useState(1);
+  const [isLoading, setLoading] = useState(false);
+
   useEffect(async () => {
     try {
-      await dispatch(getHeroes(1));
+      setLoading(true);
+      await dispatch(getHeroes(pageNumber));
       if (heroesData.error) {
         message.error(heroesData.error);
       }
     } catch (e) {
       console.error(e);
+    } finally {
+      setLoading(false);
     }
-  }, []);
+  }, [pageNumber]);
+
+  function onNextPage() {
+    setPageNumber(++pageNumber);
+  }
+
+  function onPreviousPage() {
+    setPageNumber(--pageNumber);
+  }
 
   return (
     <Layout>
@@ -37,7 +50,13 @@ export default function TablePage() {
       <Layout>
         <Sider collapsed={collapsed} selectedKeys={["2"]} openKeys={["sub2"]} />
         <Content className="site-layout-background" style={contentStyles}>
-          <Table data={heroesData} />
+          <Table
+            data={heroesData}
+            onNext={onNextPage}
+            onPrevious={onPreviousPage}
+            pageNumber={pageNumber}
+            isLoading={isLoading}
+          />
         </Content>
       </Layout>
     </Layout>

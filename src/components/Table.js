@@ -1,7 +1,4 @@
 import { Table } from "antd";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { getHeroes } from "../actions/heroes";
 import Pagination from "./Pagination";
 
 const columns = [
@@ -31,37 +28,15 @@ const columns = [
   },
 ];
 
-export default function TableHeroes({ data }) {
-  const dispatch = useDispatch();
-  let [pageNumber, setPageNumber] = useState(1);
-  const [isLoading, setLoading] = useState(false);
-
+export default function TableHeroes({
+  data,
+  onNext,
+  onPrevious,
+  pageNumber,
+  isLoading,
+}) {
   const isFirstPage = pageNumber === 1;
   const isLastPage = data.next === null || data.length === 0;
-
-  async function onNextPage() {
-    try {
-      setLoading(true);
-      setPageNumber(++pageNumber);
-      await dispatch(getHeroes(pageNumber));
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  async function onPreviousPage() {
-    try {
-      setLoading(true);
-      setPageNumber(--pageNumber);
-      await dispatch(getHeroes(pageNumber));
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setLoading(false);
-    }
-  }
 
   return (
     <>
@@ -73,8 +48,8 @@ export default function TableHeroes({ data }) {
         pagination={false}
       />
       <Pagination
-        onNext={onNextPage}
-        onPrevious={onPreviousPage}
+        onNext={onNext}
+        onPrevious={onPrevious}
         currentPage={pageNumber}
         isLast={isLastPage}
         isFirst={isFirstPage}
