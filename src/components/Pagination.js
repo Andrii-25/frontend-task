@@ -8,6 +8,7 @@ export default function Pagination({
   currentPage,
   isLast,
   isFirst,
+  isLoading,
 }) {
   const SwitchButton = styled(Button)`
     margin: 3px;
@@ -32,7 +33,7 @@ export default function Pagination({
             icon={<ArrowLeftOutlined />}
             size="large"
             onClick={onPrevious}
-            disabled={isFirst ? true : false}
+            disabled={isFirst || isLoading ? true : false}
           />
         </Tooltip>
         <Tooltip title="Page">
@@ -46,7 +47,7 @@ export default function Pagination({
             icon={<ArrowRightOutlined />}
             size="large"
             onClick={onNext}
-            disabled={isLast ? true : false}
+            disabled={isLast || isLoading ? true : false}
           />
         </Tooltip>
       </Col>

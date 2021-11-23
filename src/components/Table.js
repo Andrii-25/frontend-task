@@ -1,5 +1,5 @@
 import { Table } from "antd";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getHeroes } from "../actions/heroes";
 import Pagination from "./Pagination";
@@ -38,16 +38,6 @@ export default function TableHeroes({ data }) {
 
   const isFirstPage = pageNumber === 1;
   const isLastPage = data.next === null || data.length === 0;
-
-  useEffect(() => {
-    try {
-      setLoading(true);
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setLoading(false);
-    }
-  }, [pageNumber, data.next]);
 
   async function onNextPage() {
     try {
@@ -88,6 +78,7 @@ export default function TableHeroes({ data }) {
         currentPage={pageNumber}
         isLast={isLastPage}
         isFirst={isFirstPage}
+        isLoading={isLoading}
       />
     </>
   );
