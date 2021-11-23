@@ -7,7 +7,7 @@
 1.  Clone the project from github. Change "myproject" to your project name.
 
 ```bash
-git clone https://github.com/Andrii-25/inventory-management-app.git ./myproject
+https://github.com/Andrii-25/frontend-task.git ./myproject
 ```
 
 ### Using manual download ZIP
